@@ -1,0 +1,51 @@
+﻿class Solution {
+public:
+	int find_below(const vector<int>& nums, int target, int from, int to) {
+		if (from > to || nums[from] >= target) {
+			return -1;
+		}
+		
+		
+		int mid = (from + to) >> 1;
+		if (nums[mid] < target) {
+			if (mid + 1 < nums.size() && nums[mid + 1] >= target) {
+				return mid;
+			}
+			from = mid + 1;
+		} else {
+			if (mid - 1 >= 0 && nums[mid - 1] < target) {
+				return mid - 1;
+			}
+			to = mid - 1;
+		}
+		return find_below(nums, target, from, to);
+	}
+	
+	int find_above(const vector<int>& nums, int target, int from, int to) {
+		if (from > to || nums[to] <= target) {
+			return -1;
+		}
+		
+		int mid = (from + to) >> 1;
+		if (nums[mid] <= target) {
+			if (mid + 1 < nums.size() && nums[mid + 1] > target) {
+				return mid + 1;
+			}
+			from = mid + 1;
+		} else {
+			if (mid - 1 >= 0 && nums[mid - 1] <= target) {
+				return mid;
+			}
+			to = mid - 1;
+		}
+		return find_above(nums, target, from, to);
+	}
+
+	 
+	int findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2, int ) {
+
+	}
+	double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2){
+     		  
+	}
+};
